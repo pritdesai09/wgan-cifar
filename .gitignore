@@ -205,3 +205,15 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Model weights (large files)
+*.pth
+*.pt
+
+# Python env
+venv/
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
