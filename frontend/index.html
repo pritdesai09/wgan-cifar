@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WGAN-CIFAR · Image Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="noise"></div>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">WGAN<span class="accent">·</span>CIFAR</span>
+    <div class="nav-links">
+      <a href="#generate">Generate</a>
+      <a href="#about">About</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">Wasserstein GAN · CIFAR-10 · PyTorch</div>
+    <h1>Teaching machines<br/>to <span class="accent">imagine</span>.</h1>
+    <p class="hero-sub">A generative adversarial network trained on 50,000 images across 10 categories — now hallucinating new ones on demand.</p>
+    <a href="#generate" class="btn-primary">Start Generating ↓</a>
+  </section>
+
+  <!-- GENERATE SECTION -->
+  <section class="section" id="generate">
+    <div class="section-label">01 · Generate</div>
+    <h2>Create Images</h2>
+    <p class="section-sub">Sample from the Generator's learned latent space. Every noise vector produces a unique image.</p>
+
+    <div class="controls">
+      <div class="control-group">
+        <label>Number of Images <span class="val-display" id="count-display">9</span></label>
+        <input type="range" id="num-images" min="1" max="16" value="9" />
+      </div>
+      <div class="control-group">
+        <label>Seed <span class="hint">(optional — for reproducibility)</span></label>
+        <input type="number" id="seed-input" placeholder="e.g. 42" />
+      </div>
+      <button class="btn-primary" id="generate-btn" onclick="generateImages()">
+        <span id="btn-text">Generate</span>
+      </button>
+    </div>
+
+    <div class="status-bar" id="status-bar"></div>
+    <div class="image-grid" id="image-grid"></div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="section" id="about">
+    <div class="section-label">02 · About</div>
+    <h2>How It Works</h2>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="card-num">01</div>
+        <h3>The Dataset</h3>
+        <p>CIFAR-10 contains 60,000 32×32 colour images across 10 classes: planes, cars, birds, cats, deer, dogs, frogs, horses, ships and trucks.</p>
+      </div>
+      <div class="about-card">
+        <div class="card-num">02</div>
+        <h3>WGAN-GP</h3>
+        <p>Wasserstein GAN with Gradient Penalty replaces the standard GAN discriminator with a Critic trained using Earth Mover's Distance — giving more stable gradients and avoiding mode collapse.</p>
+      </div>
+      <div class="about-card">
+        <div class="card-num">03</div>
+        <h3>Architecture</h3>
+        <p>The Generator maps a 128-dim noise vector through four transposed convolution layers up to a 32×32 RGB image. The Critic mirrors this with strided convolutions and Instance Normalisation.</p>
+      </div>
+      <div class="about-card">
+        <div class="card-num">04</div>
+        <h3>Training</h3>
+        <p>100 epochs on Google Colab T4 GPU. Critic updates 5× per Generator update. λ=10 gradient penalty. Adam optimiser with β₁=0, β₂=0.9.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>WGAN·CIFAR</span>
+    <span>Built with PyTorch · Flask · Vanilla JS</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
