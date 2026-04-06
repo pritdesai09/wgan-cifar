@@ -358,3 +358,29 @@ footer {
   .hero, .section { padding-left: 24px; padding-right: 24px; }
   footer { flex-direction: column; gap: 8px; text-align: center; }
 }
+
+/* ── Button Spinner ─────────────────────────────────────────── */
+.btn-primary.loading {
+  opacity: 0.75;
+  cursor: not-allowed;
+  position: relative;
+  padding-left: 48px;
+}
+
+.btn-primary.loading::before {
+  content: '';
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border: 2px solid #0a0a0a;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}

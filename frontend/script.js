@@ -18,6 +18,7 @@ async function generateImages() {
 
   // UI: loading state
   btn.disabled = true;
+  btn.classList.add('loading');
   btnText.textContent = 'Generating...';
   statusBar.className = 'status-bar';
   statusBar.textContent = `Sampling ${numImages} image${numImages > 1 ? 's' : ''} from latent space...`;
@@ -60,6 +61,7 @@ async function generateImages() {
     statusBar.textContent = `✗ ${err.message} — is the Flask server running?`;
   } finally {
     btn.disabled = false;
+    btn.classList.remove('loading');
     btnText.textContent = 'Generate';
   }
 }
